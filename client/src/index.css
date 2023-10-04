@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400&display=swap');
+
+/* font-family: 'Playfair Display', serif;
+font-family: 'Poppins', sans-serif; */
+
+* {
+  padding:0;
+  margin:0;
+  box-sizing: border-box;  
+}
+
+body{
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100vh !important;
+ 
+}
+
+p {
+  padding:0;
+  margin:0;
+}
+
+main{
+  height: 80vh;
+}
+
+/* navbar */
+.navbar{
+  font-family: 'Poppins', sans-serif; 
+  font-size: 17px;
+  line-height: 26px;
+  text-transform: uppercase;
+  box-shadow: 0 8px 6px gray;
+  --webkit-box-shadow: 0 8px 6px -6px gray;
+  border-bottom: 0.3px solid gray !important; 
+}
+
+.nav-link{
+  font-weight: 300 !important;
+}
+
+.active
+{
+  border-bottom: 2px solid black ;
+}
+
+.navbar-brand
+{
+  font-weight: 700;
+  font-family: 'roboto',sans-serif;
+  letter-spacing: 3px;
+}
+
+/* Footer */
+.footer
+{
+  width: 100vw;
+  height: 8rem;
+  color:#fff;
+  margin-top: auto !important;
+  /* padding:25px; */
+  background:#000000;
+  background: --webkit-linear-gradient(
+    to right,
+    #353535,
+    #000000
+  );
+  background: linear-gradient(to right, #353535,#000000);
+}
+
+.footer p{
+  color:#fff;
+  text-align: center;
+  /* padding: 1rem; */
+  line-height: 4rem;
+}
+
+.footer a{
+  text-decoration: none;
+  color:#fff;
+  padding: 10px; 
+}
+
+.footer a:hover{
+  color:#ffefba;
+  border-bottom: 1px solid #ffefba;
+}
+
+/* Page not found */
+.pnf {
+  display: flex;
+  min-height: 65vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.pnf-title {
+  font-size: 100px;
+  font-weight: 700;
+}
+
+.pnf-heading {
+  font-weight: normal;
+}
+
+.pnf-btn {
+  color: black;
+  border: 1px solid black;
+  text-decoration: none;
+  padding: 10px;
+  margin-top: 10px;
+}
+.pnf-btn:hover {
+  background-color: black;
+  color: white;
+}
+
+/* Contact */
+.contactus {
+  margin: 0;
+  padding: 0;
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-link {
+  text-decoration: none !important;
+  color: black !important;
+}
+
+.cat-btn {
+  padding: 40px 0px;
+  font-size: 24px;
+  text-transform: uppercase;
+}
+.cat-btn:hover {
+  background-color: #434343;
+  color: white;
+}
+
+
+/* Dashboard */
+
+.dashboard {
+  margin-top: 100px !important;
+}
+
+.dashboard-menu h4 {
+  background-color: #434343 !important;
+  color: white;
+  padding: 20px 0px;
+}

@@ -1,0 +1,32 @@
+{
+  "name": "ecommerce",
+  "version": "1.0.0",
+  "description": "Affiliate ecommerce to get popular product",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js -e js, ejs",
+    "client": "npm start --prefix ./client"
+  },
+  "keywords": [
+    "Ecommerce",
+    "get",
+    "easy",
+    "popular",
+    "product"
+  ],
+  "author": "Atish",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.1",
+    "mongoose": "^7.4.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
