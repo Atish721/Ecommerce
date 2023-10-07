@@ -21,6 +21,7 @@ export async function isAdmin(req,res,next)
 {
     try {        
         const user = await userModel.findById({_id:req.user._id})
+        
         if(user.role===1)
         {
             next()            

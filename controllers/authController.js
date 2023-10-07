@@ -76,7 +76,7 @@ export async function loginController(req,res)
 
         }
 
-        const user = await userModel.findOne({email:email},{password:1,name:1,_id:1,email:1,phone:1,address:1})//,{password,_id,name,email,phone,address}
+        const user = await userModel.findOne({email:email},{password:1,name:1,_id:1,email:1,phone:1,address:1,role:1})//,{password,_id,name,email,phone,address}
 
         if(!user)
         {
@@ -102,13 +102,15 @@ export async function loginController(req,res)
             success:true,
             message:'Login successfully',
             data:{
+                token:token,
                 name:user.name,
                 email:user.email,
                 phone:user.phone,
                 address:user.address,
-                token:token,
+                role:user.role,
             }
         })
+
 
     } catch (error) {
         console.log(`Login error : ${error}`)

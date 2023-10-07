@@ -63,8 +63,12 @@ const ForgotPassword = ()=>{
                     </div>               
 
                     <div className='mb-3'>
-                        <input type='password' name='new_password' className='form-control'  placeholder='New Password' value={formData.newPassword} onChange={handleInputChange} required/>
+                        <input type='password' name='newPassword' className='form-control'  placeholder='New Password' value={formData.newPassword} onChange={handleInputChange} required/>
                     </div>
+
+                    {/* <div className='mb-3'>
+                        <input type='password' name='password' className='form-control' placeholder='Your favorite sports' value={formData.answer} onChange={handleInputChange} required/>
+                    </div>     */}
                   
                     <button type='submit' className='btn btn-primary'>Reset</button>
                 </form>

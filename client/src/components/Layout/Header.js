@@ -43,8 +43,17 @@ const Header = () => {
                                     </>
                                 ) : (
                                     <>
-                                        <li className='nav-item'>
+                                        {/* <li className='nav-item'>
                                             <NavLink onClick={handleLogout} to='/logout' className='nav-link' href='javascript:void(0)'>Logout</NavLink>
+                                        </li> */}
+                                        <li className="nav-item dropdown">
+                                            <NavLink className="nav-link dropdown-toggle" href="javascript:void(0)" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                {auth?.user?.name }
+                                            </NavLink>
+                                            <ul className="dropdown-menu">
+                                                <li><NavLink to={`/dashboard/${auth?.user?.role===1 ? 'admin':'user'}`} className="dropdown-item">Dashboard</NavLink></li>
+                                                <li><NavLink onClick={handleLogout} to='/login' className='dropdown-item' href='javascript:void(0)'>Logout</NavLink></li>
+                                            </ul>
                                         </li>
                                     </>
                                 )
@@ -53,6 +62,7 @@ const Header = () => {
                                 <NavLink to='/cart' className='nav-link' href='javascript:void(0)'>Cart (0)</NavLink>
                             </li>
                          
+                            
                         </ul>                        
                     </div>
                 </div>
