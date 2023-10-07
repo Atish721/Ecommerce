@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 import express from 'express'
 import dbConnect from './config/db.js'
 import authRoutes from './routes/authRoute.js'
+import categoryRoutes from './routes/categoryRoutes.js'
 import cors from 'cors'
 
 if (process.env.NODE_ENV !== 'production') {
@@ -23,6 +24,7 @@ app.use(cors())
 
 //Routes
 app.use('/api/v1/auth/',authRoutes)
+app.use('/api/v1/auth/category/',categoryRoutes)
 
 
 app.get('/',(req,res)=>{
