@@ -29,7 +29,7 @@ app.use('/api/v1/auth/category/',categoryRoutes)
 
 app.get('/',(req,res)=>{
     res.send({
-        message:'Welcome to the Atish'
+        message:'Welcome to the Atish\'s World'
     })
 })
 
@@ -37,6 +37,6 @@ app.get('/',(req,res)=>{
 //Start server
 var server = app.listen(PORT,()=>{
     console.log(`Server is running ${process.env.NODE_ENV} mode on http://127.0.0.1:${PORT}`)
-    console.log(server.address().address)
-    console.log(server.address().port)
+    console.log('Address: ',server.address().address)
+    console.log('Port: ',server.address().port)
 })
