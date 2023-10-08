@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken'
 export async function registerController(req,res)
 {
     try {
-        console.log('Request body',req.body)
+       
         const {name,email, phone, password, address,answer} = req.body
 
         if(!name)
