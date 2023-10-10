@@ -1,3 +1,4 @@
+import { error } from 'console'
 import productModel from '../models/productModel.js'
 import fs from 'fs'
 
@@ -62,4 +63,91 @@ const createProductController = async (req,res)=>{
     }
 }
 
-export {createProductController}
+//Get all product
+const getAllProductsController = async (req,res)=>{
+    try
+    {
+        const products = await productModel.find({}).populate('category').select({'photo':0}).limit(12).sort({createdAt:-1})
+        res.status(200).send({
+            success:true,
+            message:'Products found',
+            data:products,
+            countTotal:products.length
+        })
+
+    }catch(error)
+    {
+        res.status(500).send({
+            success:false,
+            message:'Error in get all products',
+            error:error,
+        })
+    }
+}
+
+//Get product
+const getProductController = async (req,res)=>{
+    try
+    {
+        const product = await productModel.findOne({slug:req.params.slug}).select({'photo':0}).populate('category') 
+        res.status(200).send({
+            success:true,
+            message:'Product found',
+            data:product,
+        })
+
+    }catch(error)
+    {
+        res.status(500).send({
+            success:false,
+            message:'Error in get product',
+            error:error,
+        })
+    }
+}
+
+//Get product's photo by product id
+const getProductPhotoController = async (req,res)=>{
+    try{
+        const productId = req.params.pid
+        const product = await productModel.findById(productId).select({'photo':1})
+
+        if(product.photo.data)
+        {
+            res.set('Content-Type',product.photo.contentType)
+            return res.status(200).send(product.photo.data)
+        }
+
+    }
+    catch(error){
+        res.status(500).send({
+            success:false,
+            message:'Error in get product photo',
+            error:error,
+        })
+    }
+}
+
+//Delete product
+const deleteProductController = async (req,res)=>{
+    try{
+        const productId = req.params.pid
+        await productModel.findByIdAndDelete(productId).select({'photo':0})
+
+        res.status(200).send({
+            success:true,
+            message:'Product deleted successfully',
+            data:true,
+        })
+
+    }
+    catch(error){
+        res.status(500).send({
+            success:false,
+            message:'Error in delete product photo',
+            error:error,
+        })
+    }
+}
+
+export {createProductController,getAllProductsController,getProductController,getProductPhotoController,deleteProductController}
