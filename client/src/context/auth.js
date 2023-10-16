@@ -11,7 +11,6 @@ const AuthProvider = (props)=>{
 
     useEffect(()=>{
         const data = localStorage.getItem('auth')
-        console.log('local storage: ',data)
 
         if(data)
         {
