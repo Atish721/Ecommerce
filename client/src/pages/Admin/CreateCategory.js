@@ -6,22 +6,22 @@ import CategoryForm from "../../components/Forms/CategoryForm";
 
 //Create
 const CreateCategory = () =>{
-
+    //For create
     const [auth,setAuth]=useAuth()
     const [categories,setCategories]=useState([])
     const [formData,setFormData] = useState({
         name:'',
     })
-
+    
     
     const handleInputChange = (e)=>{
         const {name,value}=e.target
- 
+        
         setFormData((prevData)=>({
-             ...prevData,
-             [name]:value,
+            ...prevData,
+            [name]:value,
         }))
-     }
+    }
 
     // Handle Form
     const handleSubmit = async (e)=>{
@@ -60,6 +60,63 @@ const CreateCategory = () =>{
         catch(error)
         {
             console.log(`Category error: ${error}`)
+        }
+    }
+    
+    //For update
+    const [selectedValue, setSelectedValue] = useState(null);
+
+    const [formDataUpdate,setFormDataUpdate] = useState({
+        name:'',
+    })
+
+    const handleInputChangeUpdate = (e)=>{
+    const {name,value}=e.target
+
+    setFormDataUpdate((prevData)=>({
+            ...prevData,
+            [name]:value,
+    }))
+    }
+    
+
+    // Handle Update Form
+    const handleSubmitUpdate = async (e)=>{
+        e.preventDefault()
+        try
+        {
+            const response = await fetch(`${process.env.REACT_APP_API}/api/v1/auth/category/update-category/${selectedValue._id}`,{
+                method:'PUT',                             
+                headers:{
+                    'Content-Type': 'application/json',
+                    Authorization:auth?.token,
+                },
+                body: JSON.stringify(formDataUpdate)
+            })
+
+
+            if(response.ok)
+            {
+                const apiResponse = await response.json()
+                if(apiResponse.success)
+                {
+                    console.log(apiResponse.message)
+                    getAllCategories()
+                    
+                }
+                else
+                {
+                    console.log(apiResponse.error)
+                }
+            }
+            else
+            {
+                throw new Error('Network response was not ok') 
+            }
+        }
+        catch(error)
+        {
+            console.log(`Category update error: ${error}`)
         }
     }
 
@@ -133,7 +190,10 @@ const CreateCategory = () =>{
                                         <tr>
                                             <td key={category._id}>{category.name}</td>
                                             <td>
-                                                <button className='btn btn-primary ms-2'  data-bs-toggle="modal" data-bs-target="#editCategoryModal">Edit</button>
+                                                <button className='btn btn-primary ms-2'  data-bs-toggle="modal" data-bs-target="#editCategoryModal" onClick={()=>{
+                                                    setFormDataUpdate({name:category.name})
+                                                    setSelectedValue(category)
+                                                    }}>Edit</button>
                                                 <button className='btn btn-danger ms-2'>Delete</button>
                                             </td>                                           
                                             
@@ -144,7 +204,7 @@ const CreateCategory = () =>{
                             </table>
                         </div>
 
-                        <div className="modal fade" id="editCategoryModal" tabindex="-1" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
+                        <div className="modal fade" id="editCategoryModal" tabIndex="-1" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
                             <div className="modal-dialog">
                                 <div className="modal-content">
                                 <div className="modal-header">
