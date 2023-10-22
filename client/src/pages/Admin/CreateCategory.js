@@ -120,6 +120,43 @@ const CreateCategory = () =>{
         }
     }
 
+      // Handle delete category
+      const handleDeleteCategory = async (id)=>{
+    
+        try
+        {
+            const response = await fetch(`${process.env.REACT_APP_API}/api/v1/auth/category/delete-category/${id}`,{
+                method:'DELETE',                             
+                headers:{
+                    Authorization:auth?.token,
+                },
+            })
+
+
+            if(response.ok)
+            {
+                const apiResponse = await response.json()
+                if(apiResponse.success)
+                {
+                    console.log(apiResponse.message)
+                    getAllCategories()                    
+                }
+                else
+                {
+                    console.log(apiResponse.error)
+                }
+            }
+            else
+            {
+                throw new Error('Network response was not ok') 
+            }
+        }
+        catch(error)
+        {
+            console.log(`Category delete error: ${error}`)
+        }
+    }
+
     const getAllCategories = async ()=>{
         try
         {
@@ -156,6 +193,7 @@ const CreateCategory = () =>{
             console.log(error)
         }
     }
+
 
     useEffect(()=>{
         getAllCategories()
@@ -194,7 +232,7 @@ const CreateCategory = () =>{
                                                     setFormDataUpdate({name:category.name})
                                                     setSelectedValue(category)
                                                     }}>Edit</button>
-                                                <button className='btn btn-danger ms-2'>Delete</button>
+                                                <button className='btn btn-danger ms-2' onClick={()=>{handleDeleteCategory(category._id)}}>Delete</button>
                                             </td>                                           
                                             
                                         </tr>
