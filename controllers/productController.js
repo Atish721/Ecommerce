@@ -37,6 +37,7 @@ const createProductController = async (req,res)=>{
             price: price,
             category: category,
             quantity: quantity,
+            shipping:shipping,
         })
 
         if(photo)

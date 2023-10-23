@@ -12,8 +12,7 @@ const CreateCategory = () =>{
     const [formData,setFormData] = useState({
         name:'',
     })
-    
-    
+        
     const handleInputChange = (e)=>{
         const {name,value}=e.target
         
