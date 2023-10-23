@@ -173,13 +173,13 @@ const CreateCategory = () =>{
             {
                 const apiResponse = await response.json()
 
-                if(apiResponse.success)
+                if(apiResponse?.success)
                 {
-                    setCategories(apiResponse.data)
+                    setCategories(apiResponse?.data)
                 }
                 else
                 {
-                    console.log(apiResponse.error)
+                    console.log(apiResponse?.error)
                 }
             }
             else
