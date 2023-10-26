@@ -1,16 +1,14 @@
-import { error } from 'console'
 import productModel from '../models/productModel.js'
 import fs from 'fs'
 
 const createProductController = async (req,res)=>{
     try
-    {
-        
+    {        
 
-        const { name, description,price,category,quantity,shipping} =req.fields
-        const { photo} =req.files
-        
- 
+        const { name,description,price,category,quantity,shipping} = req.fields
+        const {photo}=req.files
+
+
         //Validation 
         switch(true)
         {
@@ -44,7 +42,6 @@ const createProductController = async (req,res)=>{
         {
             product.photo.data = fs.readFileSync(photo.path)
             product.photo.contentType = photo.type
-
         }
 
         await product.save()
@@ -52,8 +49,9 @@ const createProductController = async (req,res)=>{
         res.status(201).send({
             success:true,
             message:'Product created successfully',
-            data:product,
+            data:true,
         })
+    
     }
     catch(error){
         res.status(500).send({
@@ -151,4 +149,62 @@ const deleteProductController = async (req,res)=>{
     }
 }
 
-export {createProductController,getAllProductsController,getProductController,getProductPhotoController,deleteProductController}
+const demo = async (req,res)=>
+{
+
+    try
+    {
+        const {name,description,price,category,quantity,shipping,photo} =req.body
+
+        console.log('name',name)
+        // const photo= req.files
+
+  
+
+        console.log('photo',photo)
+
+      
+
+     
+        const slugName = name.replace(/\s+/g, '-').toLowerCase()
+
+        const product = new productModel({
+            name: name,
+            slug: slugName,
+            description: description,
+            price: price,
+            category: category,
+            quantity: quantity,
+            shipping:shipping,
+        })
+
+        if(photo)
+        {
+            product.photo.data = fs.readFileSync(photo.path)
+            product.photo.contentType = photo.type
+
+        }
+
+        await product.save()
+       
+
+        res.status(201).send({
+            file:req.files,
+            success:true,
+            message:'Demo url',
+            product:product,
+            
+        })
+    }
+    catch(error){
+        res.status(500).send({
+            success:false,
+            message:'Error in create product',
+            error:error,
+        })
+    }
+    
+   
+}
+
+export {createProductController,getAllProductsController,getProductController,getProductPhotoController,deleteProductController,demo}

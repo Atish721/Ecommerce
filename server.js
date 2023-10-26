@@ -27,6 +27,7 @@ app.use(express.urlencoded({ extended: true })); // Parse form data
 // app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }))
 
 
+
 //Routes
 app.use('/api/v1/auth/',authRoutes)
 app.use('/api/v1/auth/category/',categoryRoutes)

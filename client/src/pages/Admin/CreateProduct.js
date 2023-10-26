@@ -12,12 +12,12 @@ const CreateProduct = () =>{
   
     const [formData,setFormData]=useState({
         category:'',
-        photo:'',
+        photo:null,
         name:'',
         description:'',
         price:'',
         quantity:'',
-        shipping:'',
+        shipping:0,
     })
 
     const handleInputChange = (e)=>{
@@ -76,7 +76,8 @@ const CreateProduct = () =>{
         e.preventDefault()
         try
         {
-            const response = await fetch(`${process.env.REACT_APP_API}/api/v1/auth/product/create-product`,{
+            console.log('FormData: ',formData)
+            const {response} = await fetch(`${process.env.REACT_APP_API}/api/v1/auth/product/create-product`,{
                 method:'POST',                             
                 headers:{
                     'Content-Type': 'application/json',
@@ -105,7 +106,7 @@ const CreateProduct = () =>{
         }
         catch(error)
         {
-            console.log(`Category error: ${error}`)
+            console.log(`Create product error: ${error}`)
         }
     }
 
@@ -160,7 +161,7 @@ const CreateProduct = () =>{
                             </div>
                             <div className="mb-3">
                                 <button className="btn btn-primary" onClick={handleSubmitProdcut}>
-                                CREATE PRODUCT
+                                    CREATE PRODUCT
                                 </button>
                             </div>
                           
